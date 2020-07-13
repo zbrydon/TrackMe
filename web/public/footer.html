@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="description" content="A frontend dashboard for the TrackMe application" />
+    <meta name="author" content="Zac Brydon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TrackMe</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+    <style>
+        .footer {
+            position: fixed;
+            left: auto;
+            bottom: 0;
+            width: 100%;
+            background-color: white;
+            color: white;
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <div>
+
+    </div>
+    <div class="footer">
+        <hr />
+        <footer>
+            <p>&copy; Copyright Zac Brydon <span id="datetime"></span></p>
+            <script>
+                var dt = new Date();
+                document.getElementById("datetime").innerHTML = dt.getFullYear();
+            </script>
+        </footer>
+    </div>
+</body>
+</html>
+
