@@ -88,10 +88,10 @@ $('#send-command').on('click', function () {
     console.log(`id is: ${id}  command is: ${command}`);
     $.post(`${MQTT_URL}`, { id, command }).then((response) => {
         if (response.success) {
-            $('#message').append('<p class="alert alert-success">Sent</p>');
+            $('#message').append(`<p class="alert alert-success">${response}</p>`);
         }
         else {
-            $('#message').append(`<p class="alert alert-danger">Not Sent</p>`);
+            $('#message').append(`<p class="alert alert-danger">${response}</p>`);
         }
     })
 });
