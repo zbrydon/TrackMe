@@ -83,7 +83,7 @@ $('#add-device').on('click', () => {
 
 $('#send-command').on('click', function () {
     const command = $('#command').val();
-    const id = $('id').val();
+    const id = $('#id').val();
     console.log(`id is: ${id}  command is: ${command}`);
     $.post('http://localhost:5001/send-command', { id, command }).then((response) => {
         if (response.success) {
