@@ -28,7 +28,7 @@ client.on('connect', () => {
 app.post('/send-command', (req, res) => {
     const { deviceID, command } = req.body;
     const topic = `/219203655/command/${deviceID}`;
-    client.publish(topic, command, () => {
+    client.publish(topic, command, (err) => {
         if (err == true) {
             return res.send(err);
         }
