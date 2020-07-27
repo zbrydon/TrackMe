@@ -29,7 +29,15 @@ app.post('/send-command', (req, res) => {
     const { deviceID, command } = req.body;
     const topic = `/219203655/command/${deviceID}`;
     client.publish(topic, command, () => {
-        res.send('Command Sent');
+        if (err == true) {
+            return res.send(err);
+        }
+        else {
+            return res.json({
+                success: true,
+                message: 'Command Sent'
+            });
+        }
     });
 });
 
