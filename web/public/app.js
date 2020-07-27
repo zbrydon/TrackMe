@@ -86,7 +86,14 @@ $('#send-command').on('click', function () {
     const command = $('#command').val();
     const id = $('#id').val();
     console.log(`id is: ${id}  command is: ${command}`);
-    $.post(`${MQTT_URL}`, { id, command }).next();
+    $.post(`${MQTT_URL}`, { id, command }).then((response) => {
+        if (response.success) {
+            $('#message').append('<p class="alert alert-success">Sent</p>');
+        }
+        else {
+            $('#message').append(`<p class="alert alert-danger">Not Sent</p>`);
+        }
+    })
 });
 
 $('#register').on('click', () => {
