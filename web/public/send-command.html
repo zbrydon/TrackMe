@@ -12,13 +12,18 @@
     <div class="container">
         <div id="navbar"></div>
         <h1>Send Command</h1>
+        <div id="message">
+        </div>
         <div class="form-group">
-            <label for="command">Command</label> <textarea rows="2" class="form-control" id="command"></textarea>
+            <label for="command">Command</label> <textarea rows="1" class="form-control" id="command"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="id">Device ID</label> <textarea rows="1" class="form-control" id="id"></textarea>
         </div>
         <button class="btn btn-success" id="send-command">Send</button>
         <div id="footer"></div>
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/poppe
 r.min.js"></script>

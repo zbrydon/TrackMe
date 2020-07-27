@@ -1,28 +1,28 @@
+import { response } from "express";
+
 $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
 const API_URL = 'https://api-sepia-alpha.vercel.app/api';
-
 
 const currentUser = localStorage.getItem('user');
 if (currentUser) {
     $.get(`${API_URL}/users/${currentUser}/devices`).then(response => {
         response.forEach((device) => {
-            $('#devices tbody').append(` <tr data-device-id=${device._id}> 
-                    <td>${device.user}</td> 
+            $('#devices tbody').append(` <tr data-device-id=${device._id}>
+                    <td>${device.user}</td>
                     <td>${device.name}</td>
                 </tr>` );
         });
         $('#devices tbody tr').on('click', (e) => {
             const deviceId = e.currentTarget.getAttribute('data-device-id');
-            
+
             $.get(`${API_URL}/devices/${deviceId}/device-history`).then(response => {
                 response.map(sensorData => {
-                    
-                    $('#historyContent').append(` 
+                    $('#historyContent').append(`
                     <tr>
-                        <td>${sensorData.ts}</td> 
-                        <td>${sensorData.temp}</td> 
-                        <td>${sensorData.loc.lat}</td> 
+                        <td>${sensorData.ts}</td>
+                        <td>${sensorData.temp}</td>
+                        <td>${sensorData.loc.lat}</td>
                         <td>${sensorData.loc.lon}</td>
                     </tr>
                     `);
@@ -83,7 +83,16 @@ $('#add-device').on('click', () => {
 
 $('#send-command').on('click', function () {
     const command = $('#command').val();
-    console.log(`command is: ${command}`);
+    const id = $('id').val();
+    console.log(`id is: ${id}  command is: ${command}`);
+    $.post('http://localhost:5001/send-command', { id, command }).then((response) => {
+        if (response.success) {
+            $('#message').append('<p class="alert alert-danger">Sent</p>');
+        }
+        else {
+            $('#message').append(`<p class="alert alert-danger">Not Sent</p>`);
+        }
+    })
 });
 
 $('#register').on('click', () => {
@@ -107,7 +116,7 @@ $('#register').on('click', () => {
 $('#login').on('click', () => {
     const entered_username = $('#entered_username').val();
     const entered_password = $('#entered_password').val();
-    
+
     $.post(`${API_URL}/authenticate`, { entered_username, entered_password }).then((response) => {
         if (response.success) {
             localStorage.setItem('user', entered_username);
@@ -115,7 +124,6 @@ $('#login').on('click', () => {
             localStorage.setItem('isAuthenticated', true);
             location.href = '/';
         } else {
-            
             $('#message').append(`<p class="alert alert-danger">${response}</p>`);
             console.log(user);
             console.log(password);
