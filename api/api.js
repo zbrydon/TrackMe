@@ -6,8 +6,6 @@ const User = require('./models/user');
 mongoose.connect("mongodb+srv://zbrydon:zbrydon@sit209.dss4j.mongodb.net/sit209", { useNewUrlParser: true, useUnifiedTopology: true });
 /*mongoose.connect("mongodb+srv://kev:kev1234@cluster0.fi0ga.mongodb.net", { useNewUrlParser: true, useUnifiedTopology: true });*/
 
- 
-
 const app = express();
 const bodyParser = require('body-parser'); app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -17,7 +15,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-RequestedWith, Content-Type, Accept");
     next();
-}); 
+});
 
 /**
 * @api {get} /api/test Test if the API is working
@@ -103,37 +101,37 @@ app.get('/api/users/:user/devices', (req, res) => {
     });
 });
 
-/** 
-* @api {get} /api/devices AllDevices An array of all devices 
+/**
+* @api {get} /api/devices AllDevices An array of all devices
 * @apiGroup Device
 * @apiSuccessExample {json} Success-Response:
-* [ 
-*   { 
-*   "_id": "dsohsdohsdofhsofhosfhsofh", 
-*   "name": "Mary's iPhone", 
+* [
+*   {
+*   "_id": "dsohsdohsdofhsofhosfhsofh",
+*   "name": "Mary's iPhone",
 *   "user": "mary",
-*        "sensorData": [ 
+*        "sensorData": [
 *        {
-*           "ts": "1529542230", 
+*           "ts": "1529542230",
 *           "temp": 12,
 *           "loc": {
-*               "lat": -37.84674, 
+*               "lat": -37.84674,
 *               "lon": 145.115113
 *               }
-*           }, 
+*           },
 *           {
-*           "ts": "1529572230", 
+*           "ts": "1529572230",
 *           "temp": 17,
 *           "loc": {
-*               "lat": -37.850026, 
+*               "lat": -37.850026,
 *               "lon": 145.117683
-*           } 
-*        } 
+*           }
+*        }
 *      ]
 *   }
 * ]
-* @apiErrorExample {json} Error-Response: 
-* { 
+* @apiErrorExample {json} Error-Response:
+* {
 *  "User does not exist"
 * }
 */
@@ -183,10 +181,10 @@ app.post('/api/devices', (req, res) => {
 * }
 */
 
-app.post('/api/send-command', (req, res) => {
+/*app.post('/api/send-command', (req, res) => {
     console.log("Command Sent");
     res.send('Some command');
-});
+});*/
 
 /**
 * @api {post} /api/authenticate Authenticates user
@@ -251,7 +249,7 @@ app.post('/api/registration', (req, res) => {
             const newUser = new User({
                 username: entered_username,
                 password: entered_password,
-                isAdmin 
+                isAdmin
             });
             newUser.save(err => {
                 return err
@@ -300,7 +298,6 @@ app.get('/api/devices/:deviceId/device-history', (req, res) => {
 app.use(express.static(`${__dirname}/public`)); app.get('/docs', (req, res) => {
     res.sendFile(`${__dirname}/public/generated-docs/index.html`);
 });
-
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
