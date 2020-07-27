@@ -3,6 +3,7 @@
 $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
 const API_URL = 'https://api-sepia-alpha.vercel.app/api';
+const MQTT_URL = 'http://localhost:5001/send-command';
 
 const currentUser = localStorage.getItem('user');
 if (currentUser) {
@@ -85,14 +86,7 @@ $('#send-command').on('click', function () {
     const command = $('#command').val();
     const id = $('#id').val();
     console.log(`id is: ${id}  command is: ${command}`);
-    $.post('http://localhost:5001/send-command', { id, command }).then((response) => {
-        if (response.success) {
-            $('#message').append('<p class="alert alert-danger">Sent</p>');
-        }
-        else {
-            $('#message').append(`<p class="alert alert-danger">Not Sent</p>`);
-        }
-    })
+    $.post(`${MQTT_URL}`, { id, command }).next();
 });
 
 $('#register').on('click', () => {

@@ -12,6 +12,12 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+app.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-RequestedWith, Content-Type, Accept");
+    next();
+});
+
 const client = mqtt.connect("mqtt://broker.hivemq.com:1883");
 
 client.on('connect', () => {
