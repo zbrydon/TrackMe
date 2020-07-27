@@ -3,7 +3,10 @@ const mongoose = require('mongoose');
 const Device = require('./models/device');
 const User = require('./models/user');
 
-mongoose.connect('mongodb + srv://zbrydon:zbrydon@sit209.dss4j.mongodb.net/sit209', { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://zbrydon:zbrydon@sit209.dss4j.mongodb.net/sit209", { useNewUrlParser: true, useUnifiedTopology: true });
+/*mongoose.connect("mongodb+srv://kev:kev1234@cluster0.fi0ga.mongodb.net", { useNewUrlParser: true, useUnifiedTopology: true });*/
+
+ 
 
 const app = express();
 const bodyParser = require('body-parser'); app.use(bodyParser.urlencoded({ extended: false }))
@@ -14,7 +17,7 @@ app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-RequestedWith, Content-Type, Accept");
     next();
-});
+}); 
 
 /**
 * @api {get} /api/test Test if the API is working

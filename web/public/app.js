@@ -1,6 +1,7 @@
 $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://api-sepia-alpha.vercel.app/api';
+
 
 const currentUser = localStorage.getItem('user');
 if (currentUser) {
