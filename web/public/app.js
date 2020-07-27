@@ -1,4 +1,4 @@
-import { response } from "express";
+//import { response } from "express";
 
 $('#navbar').load('navbar.html');
 $('#footer').load('footer.html');
