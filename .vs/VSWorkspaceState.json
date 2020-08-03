@@ -2,10 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\api",
-    "\\api\\models",
     "\\web",
-    "\\web\\public"
+    "\\web\\public",
+    "\\_mqtt"
   ],
-  "SelectedNode": "\\api\\api.js",
+  "SelectedNode": "\\_mqtt\\mqtt.js",
   "PreviewInSolutionExplorer": false
 }

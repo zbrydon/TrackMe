@@ -98,9 +98,9 @@ $('#send-command').on('click', function () {
 
 $('#register').on('click', () => {
     const entered_username = $('#entered_username').val();
-    const entered_pass1 = $('#entered_pass1').val();
-    const entered_pass2 = $('#entered_pass2').val();
-    if (entered_pass1 == entered_pass2) {
+    const entered_password = $('#entered_pass1').val();
+    const entered_password2 = $('#entered_pass2').val();
+    if (entered_password == entered_password2) {
         $.post(`${API_URL}/registration`, { entered_username, entered_password }).then((response) => {
             if (response.success) {
                 location.href = '/login';
@@ -109,7 +109,7 @@ $('#register').on('click', () => {
             }
         })
     }
-    else if (pass1 != pass2) {
+    else if (entered_password != entered_password2) {
         document.getElementById('message').innerHTML = "Passwords must match";
     }
 });
