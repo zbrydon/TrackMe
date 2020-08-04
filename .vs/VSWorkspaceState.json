@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\api",
+    "\\tests",
     "\\web",
     "\\web\\public",
     "\\_mqtt"

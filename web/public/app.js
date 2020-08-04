@@ -40,7 +40,7 @@ if (currentUser) {
         });
 } else {
     const path = window.location.pathname;
-    if (path !== '/login') {
+    if (path !== '/login' && path !== '/registration') {
         location.href = '/login';
     }
 }
